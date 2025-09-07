@@ -1,0 +1,146 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default-release",
+      "displayName": "Default Release",
+      "description": "Default configuration for release with runtime components only",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_SHARED_LIBS": "ON",
+        "QTDEPLOY": "ON",
+        "REPO_URL": "https://eddytheco.github.io/Esterv.Network.Manager"
+      }
+    },
+    {
+      "name": "default-develop",
+      "displayName": "Default Config for development",
+      "description": "Default configuration for development, release runtime and dev components, build tests ",
+      "inherits": "default-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "BUILD_DOCS": "ON",
+        "BUILD_EXAMPLES": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default-release",
+      "configurePreset": "default-release"
+    },
+    {
+      "name": "default-develop",
+      "configurePreset": "default-develop"
+    },
+    {
+      "name": "default-documentation",
+      "configurePreset": "default-develop",
+      "targets": "doxygen_docs"
+    },
+    {
+      "name": "default-qmllint",
+      "configurePreset": "default-develop",
+      "targets": "all_qmllint_json"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "default-release",
+      "description": "Release runtime components",
+      "configurePreset": "default-release",
+      "generators": [
+        "IFW",
+        "TGZ"
+      ],
+      "variables": {
+        "CPACK_ARCHIVE_COMPONENT_INSTALL": "ON",
+        "CPACK_COMPONENTS_ALL": "EstervNetworkManager;EstervNetworkManager-qml;",
+        "CPACK_PACKAGE_CONTACT": "estervtech@gmail.com",
+        "CPACK_PACKAGE_VENDOR": "estervtech"
+      },
+      "packageDirectory": "packages-${presetName}"
+    },
+    {
+      "name": "default-develop",
+      "description": "Release development components",
+      "configurePreset": "default-develop",
+      "generators": [
+        "IFW",
+        "TGZ"
+      ],
+      "variables": {
+        "CPACK_COMPONENTS_GROUPING": "ALL_COMPONENTS_IN_ONE",
+        "CPACK_PACKAGE_CONTACT": "estervtech@gmail.com",
+        "CPACK_PACKAGE_VENDOR": "estervtech"
+      },
+      "packageDirectory": "packages-${presetName}"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default-release"
+        },
+        {
+          "type": "build",
+          "name": "default-release"
+        },
+        {
+          "type": "package",
+          "name": "default-release"
+        }
+      ]
+    },
+    {
+      "name": "default-develop",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default-develop"
+        },
+        {
+          "type": "build",
+          "name": "default-develop"
+        },
+        {
+          "type": "package",
+          "name": "default-develop"
+        }
+
+      ]
+    },
+    {
+      "name": "default-documentation",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default-develop"
+        },
+        {
+          "type": "build",
+          "name": "default-documentation"
+        }
+      ]
+    },
+    {
+      "name": "default-qmllint",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default-develop"
+        },
+        {
+          "type": "build",
+          "name": "default-qmllint"
+        }
+      ]
+    }
+  ]
+}
