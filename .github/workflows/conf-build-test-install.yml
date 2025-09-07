@@ -1,0 +1,21 @@
+name: push-build-release
+run-name: ${{ github.actor }} ${{ github.event_name }} to ${{ github.event.pull_request.base.ref }} 
+on:
+
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [main,develop]
+jobs:
+  build_test_package:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    uses: EddyTheCo/Common/.github/workflows/build-test-install.yml@develop
+    with:
+      os: ${{ matrix.os }}
+      qtModules: 'qtshadertools'
+      qtVersion: '6.8.1'
+
