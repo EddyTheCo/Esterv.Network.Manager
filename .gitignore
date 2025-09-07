@@ -1,0 +1,8 @@
+.git/
+doc/html/
+doc/*.tag
+*.swp
+CMakeLists.txt.user
+build*
+tags
+CMakeUserPresets.json
