@@ -12,6 +12,8 @@ if(BUILD_EXAMPLES)
       1.0
       QML_FILES
       "qml/${example}.qml"
+      RESOURCES
+      logo.png
       RESOURCE_PREFIX
       "/esterVtech.com/imports"
       IMPORT_PATH
