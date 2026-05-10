@@ -8,7 +8,7 @@ on:
 
 jobs:
   create-develop-branch:
-    uses: EddyTheCo/Common/.github/workflows/recreate-develop.yml@develop
+    uses: EddyTheCo/Common/.github/workflows/recreate-develop.yml@v0.7.0
     if: ${{ (github.event.pull_request.merged == true) && (startsWith(github.base_ref, 'main')) && (startsWith(github.head_ref, 'develop'))}}
     permissions:
       contents: write

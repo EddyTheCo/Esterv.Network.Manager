@@ -13,7 +13,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
 
-    uses: EddyTheCo/Common/.github/workflows/build-test-install.yml@develop
+    uses: EddyTheCo/Common/.github/workflows/build-test-install.yml@v0.7.0
     with:
       os: ${{ matrix.os }}
       qtModules: 'qtshadertools'
