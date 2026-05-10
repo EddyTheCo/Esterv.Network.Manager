@@ -9,7 +9,7 @@ include(FetchContent)
 FetchContent_Declare(
   ccommon
   GIT_REPOSITORY https://github.com/EddyTheCo/Common.git
-  GIT_TAG develop)
+  GIT_TAG v0.7.0)
 FetchContent_MakeAvailable(ccommon)
 version_from_git(LOG ON TIMESTAMP "%Y%m%d%H%M%S")
 project(
@@ -37,7 +37,7 @@ FetchContent_MakeAvailable(EstervDesigns)
 FetchContent_Declare(
   GDbusCpp
   GIT_REPOSITORY https://github.com/amarula/libcppconnman.git
-  GIT_TAG main
+  GIT_TAG f13dd72c56ab365d88575aecee53498b43bebfe7
   FIND_PACKAGE_ARGS 1.1 CONFIG)
 set(BUILD_CONNMAN ON)
 FetchContent_MakeAvailable(GDbusCpp)
