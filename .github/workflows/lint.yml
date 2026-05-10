@@ -8,7 +8,7 @@ on:
       - completed
 jobs:
   qmllint-comment:
-    uses: EddyTheCo/Common/.github/workflows/lint.yml@develop
+    uses: EddyTheCo/Common/.github/workflows/lint.yml@v0.7.0
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       actions: read
